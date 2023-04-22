@@ -4,11 +4,25 @@ function getComputerChoice(){
     return Math.floor(Math.random() * 3) + 1;
 }
 
-function showRoundWinner(choiceComputer, choiceUser){
+function getPlayerChoiceNumber(choicePlayer){
+    let choicePlayerNumber = 0;
+
+    //converts the choice from string to number for calculations
+    if (choicePlayer = "ROCK"){
+        choicePlayerNumber = 1;
+    }else if(choicePlayer = "PAPER"){
+        choicePlayerNumber = 2;
+    }else{
+        choicePlayerNumber = 3;
+    }
+    return choicePlayerNumber;
+}
+
+function showRoundWinner(choiceComputer, choicePlayer){
     let roundResult = "";
 
     // playerChoice is Rock
-    if(choiceUser === 1){
+    if(choicePlayer === 1){
 
         if(choiceComputer === 1 ){
             // Rock vs Rock
@@ -22,7 +36,7 @@ function showRoundWinner(choiceComputer, choiceUser){
         }
 
     // playerChoice is Paper
-    }else if(choiceUser === 2){
+    }else if(choicePlayer === 2){
 
         if(choiceComputer === 1 ){
             // Paper vs Rock
