@@ -4,98 +4,53 @@ function getComputerChoice(){
     return Math.floor(Math.random() * 3) + 1;
 }
 
-function getPlayerChoiceNumber(choicePlayer){
-    let choicePlayerNumber = 0;
-
-    //converts the choice from string to number for calculations on showRoundWinner()
-    if (choicePlayer = "ROCK"){
-        choicePlayerNumber = 1;
-    }else if(choicePlayer = "PAPER"){
-        choicePlayerNumber = 2;
-    }else{
-        choicePlayerNumber = 3;
-    }
-    return choicePlayerNumber;
+function getPlayerChoiceNumber(choicePlayer){   //showRoundWinner() works with numbers 
+    if (choicePlayer = "ROCK") return 1;    
+    else if(choicePlayer = "PAPER") return 2;    
+    else return 3;
 }
 
 function showRoundWinner(choiceComputer, choicePlayer){
     let roundResult = "";
-
-    // playerChoice is Rock
-    if(choicePlayer === 1){
-
-        if(choiceComputer === 1 ){
-            // Rock vs Rock
-            roundResult = "Draw";
-        }else if (choiceComputer === 2){
-            // Rock vs Paper
-            roundResult = "I chose PAPER. You lost :(";
-        }else{
-            // Rock vs Scissors
-            roundResult = "I chose SCISSORS. You WON!!";
-        }
-
-    // playerChoice is Paper
-    }else if(choicePlayer === 2){
-
-        if(choiceComputer === 1 ){
-            // Paper vs Rock
-            roundResult = "I chose ROCK. You WON!!";
-        }else if (choiceComputer === 2){
-            // Paper vs Paper
-            roundResult = "Draw";
-        }else{
-            // Paper vs Scissors
-            roundResult = "I chose Scissors. You lost :(";
-        }
-
-    // playerChoice is Scissors    
-    }else{
-
-        if(choiceComputer === 1 ){
-            // Scissors vs Rock
-            roundResult = "I chose ROCK. You lost :(";
-        }else if (choiceComputer === 2){
-            // Scissors vs Paper
-            roundResult = "I chose PAPER. You WON!!";
-        }else if(playerChoice = "SCISSORS"){
-            // Scissors vs Scissors
-            roundResult = "Draw";
-        }else{
-            console.log("Invalid String. Be sure to not leave any space or make any typos")
-        }
+  
+    if(choicePlayer === 1){                                              // playerChoice is Rock
+        if(choiceComputer === 1 ) roundResult = "Draw";                             // Rock vs Rock    
+        else if (choiceComputer === 2) roundResult = "You lost. Paper beats rock";  // Rock vs Paper    
+        else roundResult = "You WON!!";                                             // Rock vs Scissors
+    }else if(choicePlayer === 2){                                        // playerChoice is Paper
+            if(choiceComputer === 1 ) roundResult = "You WON!!";                    // Paper vs Rock    
+            else if (choiceComputer === 2) roundResult = "Draw";                    // Paper vs Paper      
+            else roundResult = "You lost. Scissor beats paper";                     // Paper vs Scissors
+    }else{                                                               // playerChoice is Scissors
+        if(choiceComputer === 1 ) roundResult = "You lost. Rock beats scissors";    // Scissors vs Rock   
+        else if (choiceComputer === 2)roundResult = "You WON!!";                    // Scissors vs Paper           
+        else roundResult = "Draw";                                                  // Scissors vs Scissors
     }
-
-    return roundResult;
-    
+    return roundResult;   
 }
 
-function game(){
-    let scorePlayer = 0, scoreComputer = 0, choicePlayer = "", originalStringPlayerChoice = "", roundResult = "";
-
-    for(i = 1; i < 6 ; i++){
-        choicePlayer = prompt("Enter your move Rock, Paper or Scissors. NO TYPOS or it won't work!!! ")
-
-        //to store original string to later console.log player's choice without any change made to it
-        originalStringPlayerChoice = choicePlayer;
-
-        choicePlayer = choicePlayer.toUpperCase();
-        roundResult = showRoundWinner(getComputerChoice(), getPlayerChoiceNumber(choicePlayer));
+function game(playerButton){
+    let scoreComputer = 0, scorePlayer = 0, choicePlayer = "", roundResult = "";
+    choicePlayer = playerButton.toUpperCase();
+    roundResult = showRoundWinner(getComputerChoice(), getPlayerChoiceNumber(choicePlayer));
         
-        if (roundResult.search("You WON") === -1 && roundResult.search("Draw") === -1){
-            ++scoreComputer;
-        }else if(roundResult.search("Draw") === -1){
-            ++scorePlayer;
-        }
+    if (roundResult.includes("WON") === true)      ++scorePlayer;
+    else if(roundResult.includes("lost") === true) ++scoreComputer;
+         
+    messages.textContent =  `Computer Score is ${scoreComputer} Player Score is ${scorePlayer}`;
+    messages.textContent += `${roundResult}`;
         
-        console.log("\n------------------ROUND " + i + "------------------");
-        console.log("\nYOUR MOVE IS " + originalStringPlayerChoice);
-        console.log("\n" + roundResult);
-        
-        if (i === 5){
-            console.log("*********************END**********************");
-            console.log("\nComputer Score is " + scoreComputer + "\n Player Score is " + scorePlayer);            
-        }
-
+    if (scoreComputer < 6 || scorePlayer < 6){
+        messages.textContent =  `GAME OVER`;
+        scorePlayer = 0;
+        scoreComputer = 0;
     }
 }
+
+let messages =  document.querySelector('#content');
+let buttons = document.querySelectorAll('button');
+buttons = Array.from(buttons);
+buttons.shift();
+buttons.forEach(button => button.addEventListener('click', (e) => {
+    game(e.target.textContent);
+} ));
