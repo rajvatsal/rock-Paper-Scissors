@@ -37,10 +37,24 @@
     font-size: 50px;
     
 }
-.page, #firstMessage{
+ #firstMessage, .points{
+    margin-left: 50px;
     font-size:135px;
+    justify-content: start;
+    
 }
 .page{
     margin: 0 0;
     padding: 0 0;
+}
+.page .WINS{
+    font-size: 135px;
+    font-weight: bold;
+    margin-left: 50px;
+}
+#firstMessage{
+    margin-top: 70px;
+}
+.points{
+    font-weight: bold;
 }
