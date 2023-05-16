@@ -22,35 +22,39 @@ function showRoundWinner(choiceComputer, choicePlayer){
             else if (choiceComputer === 2) roundResult = "Draw";                    // Paper vs Paper      
             else roundResult = "You lost. Scissor beats paper";                     // Paper vs Scissors
     }else{                                                               // playerChoice is Scissors
-        if(choiceComputer === 1 ) roundResult = "You lost. Rock beats scissors";    // Scissors vs Rock   
-        else if (choiceComputer === 2)roundResult = "You WON!!";                    // Scissors vs Paper           
-        else roundResult = "Draw";                                                  // Scissors vs Scissors
+        if(choiceComputer === 1 ) roundResult = 'You lost. Rock beats scissors';    // Scissors vs Rock   
+        else if (choiceComputer === 2)roundResult = 'You WON!!';                    // Scissors vs Paper           
+        else roundResult = 'Draw';                                                  // Scissors vs Scissors
     }
     return roundResult;   
 }
 
-function game(playerButton){
-    let scoreComputer = 0, scorePlayer = 0, choicePlayer = "", roundResult = "";
-    choicePlayer = playerButton.toUpperCase();
-    roundResult = showRoundWinner(getComputerChoice(), getPlayerChoiceNumber(choicePlayer));
-        
-    if (roundResult.includes("WON") === true)      ++scorePlayer;
-    else if(roundResult.includes("lost") === true) ++scoreComputer;
-         
-    messages.textContent =  `Computer Score is ${scoreComputer} Player Score is ${scorePlayer}`;
-    messages.textContent += `${roundResult}`;
-        
-    if (scoreComputer < 6 || scorePlayer < 6){
-        messages.textContent =  `GAME OVER`;
-        scorePlayer = 0;
-        scoreComputer = 0;
-    }
+let text =  document.querySelector('#content'), textValue = "", scoreComp = 0, scorePlayer = 0;
+const choice = document.querySelectorAll('button');
+choice.forEach(button => button.addEventListener('click', (e) => {
+    text.textContent = showRoundWinner(getComputerChoice(), getPlayerChoiceNumber(e.target.textContent));
+
+    textValue = text.textContent;
+if (textValue.includes("WON") === true)      ++scorePlayer;
+else if(textValue.includes("lost") === true) ++scoreComp;
+
+if (scoreComp === 5 || scorePlayer === 5){
+    if (scorePlayer > scoreComp) text.textContent = 'You won the match congrats !!!';
+    else text.textContent = 'You lost the match :(';
+    scorePlayer = 0;
+    scoreComp = 0;
+}
+}))
+textValue = text.textContent;
+if (textValue.includes("WON") === true)      ++scorePlayer;
+else if(textValue.includes("lost") === true) ++scoreComp;
+
+if (scoreComp === 5 || scorePlayer === 5){
+    if (scorePlayer > scoreComp) text.textContent = 'You won the match congrats !!!';
+    else text.textContent = 'You lost the match :(';
+    scorePlayer = 0;
+    scoreComp = 0;
 }
 
-let messages =  document.querySelector('#content');
-let buttons = document.querySelectorAll('button');
-buttons = Array.from(buttons);
-buttons.shift();
-buttons.forEach(button => button.addEventListener('click', (e) => {
-    game(e.target.textContent);
-} ));
+
+
