@@ -1,3 +1,6 @@
+.page .scoreContainer{
+    margin-top: 100px;
+}
 .scoreContainer, #messages, #firstMessage{
     display: flex;
     margin: 70px 50px 5px;
@@ -32,7 +35,7 @@
 }
 .page #messages{
     font-size: 50px;
-    font-style: italic;
+    
 }
 .page, #firstMessage{
     font-size:135px;

@@ -4,8 +4,8 @@ function getComputerChoice(){
     return Math.floor(Math.random() * 3) + 1;
 }
 function getPlayerChoiceNumber(choicePlayer){   //showRoundWinner() works with numbers 
-    if (choicePlayer = "ROCK") return 1;    
-    else if(choicePlayer = "PAPER") return 2;    
+    if (choicePlayer.toUpperCase() === "ROCK") return 1;    
+    else if(choicePlayer.toUpperCase() === "PAPER") return 2;    
     else return 3;
 }
 function showRoundWinner(choiceComputer, choicePlayer){
