@@ -8,12 +8,24 @@
     <link href = "./style.css" rel = "stylesheet">
 </head>
 <body>
-    <div class = "page"></div>
-        <div class = "messages" id = "content">rock-paper-scissors</div>
+    <div class = "page">
+        <div id = "firstMessage">Whoever gets the first five points WINS</div>
+        <div class = "scoreContainer" id = "content">
+            <div class = "playerScore">0</div>
+            <div class = "colon">:</div>
+            <div class = "compScore">0</div>
+        </div>
+        <div class = "nameTag">
+            <div class = "tagPlayer">Player</div>
+            <div class = "tagComp">Computer</div>
+        </div>
+        <div class = "messageContainer">
+            <div id = "messages">START</div>
+        </div>
         <div class = "button-container">
-            <button class = "rock">Rock</button>
-            <button class = "paper">Paper</button>
-            <button class = "scissors">Scissors</button>
+            <button class = "rock button">Rock</button>
+            <button class = "paper button">Paper</button>
+            <button class = "scissors button">Scissors</button>
         </div>
     </div>
     <script src="./script.js"></script>
