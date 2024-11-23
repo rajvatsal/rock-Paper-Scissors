@@ -1,45 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href = "./style.css" rel = "stylesheet">
-    <style> 
-        body {
-          background-image: url("./pics/pexels-sl-wong-1023953.jpg");
-          background-color: #cccccc;
-          background-size: cover;
-          background-repeat: no-repeat;
-        }
-        </style>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="./style.css" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #171717;
+      --text-color: #d9d9d9;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      background-size: cover;
+      background-repeat: no-repeat;
+      color: var(--text-color);
+    }
+
+    button {
+      background-color: var(--text-color);
+      color: var(--bg-color);
+      cursor: pointer;
+    }
+  </style>
 </head>
+
 <body>
-    <div class = "page">
-        <div class = "firstThreeLines">
-            <div id = "firstMessage">Whoever gets the </div>
-            <div class = "points"><strong>first <em>Five</em> points</strong></div>
-            <div class = "WINS"><em>WINS</em></div>
-        </div>
-        <div class = "scoreContainer" id = "content">
-            <div class = "playerScore">0</div>
-            <div class = "colon">:</div>
-            <div class = "compScore">0</div>
-        </div>
-        <div class = "nameTag">
-            <div class = "tagPlayer">Player</div>
-            <div class = "tagComp">Computer</div>
-        </div>
-        <div class = "messageContainer">
-            <div id = "messages"><em>START</em></div>
-        </div>
-        <div class = "button-container">
-            <button class = "rock button">Rock</button>
-            <button class = "paper button">Paper</button>
-            <button class = "scissors button">Scissors</button>
-        </div>
+  <div class="page">
+    <div class="scoreContainer" id="content">
+      <div class="playerScore">0</div>
+      <div class="colon">:</div>
+      <div class="compScore">0</div>
     </div>
-    <script src="./script.js"></script>
+    <div class="nameTag">
+      <div class="tagPlayer">Player</div>
+      <div class="tagComp">Computer</div>
+    </div>
+    <div class="messageContainer">
+      <div id="messages"><em>START</em></div>
+    </div>
+    <div class="button-container">
+      <button class="rock button">Rock</button>
+      <button class="paper button">Paper</button>
+      <button class="scissors button">Scissors</button>
+    </div>
+  </div>
+  <script src="./script.js"></script>
 </body>
+
 </html>
